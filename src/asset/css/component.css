@@ -1,0 +1,17 @@
+/*header*/
+.headNav{
+    height:50px;
+    background:rgba(0,0,0,.3);
+}
+.headNav a{
+    display: inline-block;
+    width:100px;
+    height:50px;
+    text-decoration: none;
+    line-height:50px;
+    color:#fff;
+    text-align: center
+}
+.headNav a:hover{
+    background:lightblue
+}
