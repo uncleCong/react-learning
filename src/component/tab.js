@@ -30,6 +30,9 @@ class Tab extends Component{
             isActive : n
         })
     }
+    formData(){
+        this.props.getFormData(this.state.isActive)
+    }
     getInfo(){
         if(this.state.isActive === 1){
             return <span>我是第一个</span>
