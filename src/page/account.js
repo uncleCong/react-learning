@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
 import Footer from '../component/footer'
-import Carousel from '../lib/carousel'
 
-class Home extends Component{
+class Account extends Component{
     render(){
         return (
             <div>
-                <Carousel />
+                这是账户中心
                 <Footer />
-                这是主页
             </div>
         )
     }
 }
 
-export default Home
+export default Account

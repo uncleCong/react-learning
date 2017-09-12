@@ -17,14 +17,12 @@ const styles = {
 }
 
 class Tab extends Component{
-
     constructor(...arg){
         super(...arg)
         this.state = {
             isActive : 1
         }
     }
-
     changeState(n){
         this.setState({
             isActive : n

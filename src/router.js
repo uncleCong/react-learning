@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Route ,Switch} from 'react-router-dom';
 import Home from './page/home'
-import About from './page/about.js'
+import More from './page/more.js'
 import List from './page/list.js'
+import Account from './page/account'
 
 class NoMatch extends Component{
     render(){
@@ -17,8 +18,9 @@ class Router extends Component{
         return(
             <Switch>
                 <Route path="/home" component={Home} />
-                <Route path="/about" component={About} />
+                <Route path="/more" component={More} />
                 <Route path="/list" component={List} />
+                <Route path="/account" component={Account} />
                 <Route component={NoMatch}/>
             </Switch>
         )

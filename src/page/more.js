@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import Header from '../component/header'
+import Footer from '../component/footer'
 
 class About extends Component{
     render(){
         return (
             <div>
-                <Header />
                 这是关于我们
+                <Footer />
             </div>
         )
     }
