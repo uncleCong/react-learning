@@ -35,6 +35,8 @@ class Carousel extends Component {
             activeIndex: 0,
             bannerList: { "version": "3.7.2", "code": "000", "msg": "", "tokenid": "CE27CD6294CC295F7964F4E53308CDF51500259045472", "channel": "", "totalNum": 0, "preNo": 0, "nextNo": 0, "num": 10, "banner_urls": [{ "title": "新手指引App", "banner_url": "http://me.mejinrong.com/me-h5/new_guide.html", "status": "2", "ranks": 9, "pic_url": "https://fastd.mejinrong.com/group1/M00/00/1F/Cv8JJlj_AkqAKJ87AAELX8vH0bU088.jpg", "imgType": null, "upload_time": null, "type": 0, "backGroundColor": "ffffff" }, { "title": "高端贷App", "banner_url": "http://mp.weixin.qq.com/s/77kwsoANWWMoGigk1hVEMg", "status": "2", "ranks": 10, "pic_url": "https://fastd.mejinrong.com/group1/M00/00/1F/Cv8JJVj_AlqAMz67AAE97JM_by0051.jpg", "imgType": null, "upload_time": null, "type": 0, "backGroundColor": "ffffff" }] }
         }
+        this.startEvent = this.startEvent.bind(this);
+        this.endEvent = this.endEvent.bind(this);
     }
 
     startEvent(event) {
@@ -60,13 +62,13 @@ class Carousel extends Component {
             this.setState({
                 activeIndex: 0
             }, () => {
-                console.log(this.state.activeIndex)
+                console.log('激活状态:'+this.state.activeIndex)
             })
         } else {
             this.setState({
                 activeIndex: this.state.activeIndex + 1
             }, () => {
-                console.log(this.state.activeIndex)
+                console.log('激活状态:'+this.state.activeIndex)
             })
         }
     }
@@ -75,13 +77,13 @@ class Carousel extends Component {
             this.setState({
                 activeIndex: this.state.bannerList.banner_urls.length - 1
             }, () => {
-                console.log(this.state.activeIndex)
+                console.log('激活状态:'+this.state.activeIndex)
             })
         } else {
             this.setState({
                 activeIndex: this.state.activeIndex - 1
             }, () => {
-                console.log(this.state.activeIndex)
+                console.log('激活状态:'+this.state.activeIndex)
             })
         }
     }
@@ -101,12 +103,11 @@ class Carousel extends Component {
                 arr.push(<span style={styles.point} key={i}></span>)
             }
         }
-        console.log(arr)
         return arr;
     }
     render() {
         return (
-            <div style={{ width: "100%", height: "180px", background: "#dddcdd" ,position:"relative"}} onTouchStart={this.startEvent.bind(this)} onTouchEnd={this.endEvent.bind(this)}>
+            <div style={{ width: "100%", height: "180px", background: "#dddcdd" ,position:"relative"}} onTouchStart={this.startEvent} onTouchEnd={this.endEvent}>
                 {this.getImgData()}
                 <div style={styles.pointContainer}>
                     {this.getPoint()}
