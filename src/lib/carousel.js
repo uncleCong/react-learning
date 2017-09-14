@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Ajax from '../lib/config'
 
 let touchDirection = {
     getSlideAngle: function (dx, dy) {
@@ -33,12 +34,24 @@ class Carousel extends Component {
             startX: 0,
             startY: 0,
             activeIndex: 0,
-            bannerList: { "version": "3.7.2", "code": "000", "msg": "", "tokenid": "CE27CD6294CC295F7964F4E53308CDF51500259045472", "channel": "", "totalNum": 0, "preNo": 0, "nextNo": 0, "num": 10, "banner_urls": [{ "title": "新手指引App", "banner_url": "http://me.mejinrong.com/me-h5/new_guide.html", "status": "2", "ranks": 9, "pic_url": "https://fastd.mejinrong.com/group1/M00/00/1F/Cv8JJlj_AkqAKJ87AAELX8vH0bU088.jpg", "imgType": null, "upload_time": null, "type": 0, "backGroundColor": "ffffff" }, { "title": "高端贷App", "banner_url": "http://mp.weixin.qq.com/s/77kwsoANWWMoGigk1hVEMg", "status": "2", "ranks": 10, "pic_url": "https://fastd.mejinrong.com/group1/M00/00/1F/Cv8JJVj_AlqAMz67AAE97JM_by0051.jpg", "imgType": null, "upload_time": null, "type": 0, "backGroundColor": "ffffff" }] }
+            bannerList: []
         }
         this.startEvent = this.startEvent.bind(this);
         this.endEvent = this.endEvent.bind(this);
     }
-
+    componentWillMount(){
+        var _this = this;
+        Ajax({
+            key : "banner",
+            callback:function(data){
+                if(data.code === "000"){
+                    _this.setState({
+                        bannerList : data.banner_urls
+                    })
+                }
+            }
+        })
+    }
     startEvent(event) {
         this.setState({
             startX: event.touches[0].pageX,
@@ -58,7 +71,7 @@ class Carousel extends Component {
         }
     }
     goLeft() {
-        if (this.state.activeIndex === this.state.bannerList.banner_urls.length - 1) {
+        if (this.state.activeIndex === this.state.bannerList.length - 1) {
             this.setState({
                 activeIndex: 0
             }, () => {
@@ -75,7 +88,7 @@ class Carousel extends Component {
     goRight() {
         if (this.state.activeIndex === 0) {
             this.setState({
-                activeIndex: this.state.bannerList.banner_urls.length - 1
+                activeIndex: this.state.bannerList.length - 1
             }, () => {
                 console.log('激活状态:'+this.state.activeIndex)
             })
@@ -88,15 +101,15 @@ class Carousel extends Component {
         }
     }
     getImgData() {
-        for (var i = 0; i < this.state.bannerList.banner_urls.length; i++) {
+        for (var i = 0; i < this.state.bannerList.length; i++) {
             if (this.state.activeIndex === i) {
-                return <img src={this.state.bannerList.banner_urls[i].pic_url} alt="" style={{ width: "100%", height: "100%" }} />
+                return <img src={this.state.bannerList[i].pic_url} alt="" style={{ width: "100%", height: "100%" }} />
             }
         }
     }
     getPoint(){
         let arr = []
-        for (var i = 0; i < this.state.bannerList.banner_urls.length; i++) {
+        for (var i = 0; i < this.state.bannerList.length; i++) {
             if(this.state.activeIndex === i){
                 arr.push(<span style={styles.pointActive} key={i}></span>)
             }else{
