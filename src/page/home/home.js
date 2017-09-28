@@ -90,6 +90,7 @@ class Progress extends Component {
         )
     }
 }
+
 class ListItem extends Component {
     render() {
         return (
@@ -164,6 +165,7 @@ class FullList extends Component {
         )
     }
 }
+
 class Home extends Component {
     render() {
         return (
