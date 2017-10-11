@@ -8,7 +8,7 @@ import { createStore } from 'redux'
 import todoApp from './redux/reducers'
 
 let store = createStore(todoApp);
-console.log(store.getState())
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>

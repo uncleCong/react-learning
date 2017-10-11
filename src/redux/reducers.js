@@ -1,10 +1,19 @@
-function counter(state = { count: 0 }, action) {
-  const count = state.count
-  switch (action.type) {
-    case 'increase':
-      return { count: count + 1 }
+const initialState = [];
+
+export default (state = initialState,action) => {
+  switch (action.type){
+    case "ADD_TODO":
+      return [
+        ...state,
+        {
+          text:action.text,
+          statue:'undo',
+          id:action.id
+        }
+      ]
+    case "TOGO_TODO":
+    case "REMOVE_TODO":
     default:
-      return state
+      return state;
   }
 }
-export default counter;
